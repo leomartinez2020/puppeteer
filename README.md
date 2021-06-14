@@ -10,37 +10,40 @@ npm i puppeteer mocha chai
 
 ```
 
+Then we create a folder named "test" and inside it we create a test file, for example, 'test.ui.js':
+
 ```
 const puppeteer = require('puppeteer');
-const expect = require('chai').expect;
 const should = require('chai').should();
+const expect = require('chai').expect;
 
-describe('', () => {
+describe('Test UI', () => {
     let browser;
     let page;
+
     before(async() => {
         browser = await puppeteer.launch();
-    });
-    
-    beforeEach(async() => {
-        page = await browser.newPage();
-    });
-    
-    afterEach(async() => {
-        await page.close();
     });
 
     after(async() => {
         await browser.close();
     });
-    
-    it.skip('should have anchors with images', async() => {
+
+    beforeEach(async() => {
+        page = await browser.newPage();
+    });
+
+    it('Check button text', async() => {
+        const newButtonName = 'Updated Name';
         await page.goto('http://www.uitestingplayground.com/textinput');
-        expect(await page.title()).to.contain('Wikipedia');
+        await page.type('#newButtonName', newButtonName, {delay: 100});
+        let button = await page.$('#updatingButton');
+        await button.click();
+        expect(await button.evaluate((val) => val.textContent)).to.contain(newButtonName);
     });
 })
-
 ```
+
 ![alt text](https://user-images.githubusercontent.com/10379601/29446482-04f7036a-841f-11e7-9872-91d1fc2ea683.png)
 
 ```
