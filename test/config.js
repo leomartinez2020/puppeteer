@@ -6,6 +6,8 @@ module.exports = ({
         timeout: 50000,
     },
     CI: {
+        baseUrl: 'http://www.uitestingplayground.com/textinput',
+        buttonName: 'Cypress',
         launchOptions: { 
             executablePath: process.env.PUPPETEER_EXEC_PATH,
             headless: true,
