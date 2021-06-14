@@ -39,8 +39,8 @@ describe('Visit wikipedia landing page in Spanish', () => {
         const imagenes = await page.$$('img');
         for (let i = 0; i < imagenes.length; i++) {
             expect(await imagenes[i].evaluate((node) => node.getAttribute('alt'))).to.be.a('string');
-            let vaina = await imagenes[i].evaluate((node) => node.getAttribute('alt'));
-            console.log(vaina);
+            let altValues = await imagenes[i].evaluate((node) => node.getAttribute('alt'));
+            console.log(altValues);
         }
         // const image_parent = (await imagen.$x('..'))[0];
         // expect(await image_parent.evaluate((node) => node.getAttribute('href'))).to.contain('wikimedia');
