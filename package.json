@@ -1,0 +1,17 @@
+{
+  "name": "pupetero",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 30000 --reporter=list"
+  },
+  "keywords": [],
+  "author": "leonardo",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "puppeteer": "^10.0.0"
+  }
+}

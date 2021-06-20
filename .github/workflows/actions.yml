@@ -1,0 +1,23 @@
+name: GitHub Actions Puppeteer
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Test Dependencies
+      env:
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
+      run: npm install
+    - name: Run Site Test Code
+      uses: mujo-code/puppeteer-headful@master
+      env:
+        TESTENV: 'CI'
+        CI: 'true'
+      with:
+        args: npm test
